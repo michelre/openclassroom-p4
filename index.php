@@ -10,8 +10,9 @@ if (!isset($_GET['action']) || $_GET['action'] === 'home') {
     return;
 }
 
-if ($_GET['action'] === 'detailArticle') {
-    $frontendController->detailArticle($_GET['articleId']);
+if ($_GET['action'] === 'detailNote') {
+    $frontendController->detailNote($_GET['noteId']);
+    $frontendController->detailNote($_GET['commentId']);
     return;
 }
 
@@ -23,4 +24,3 @@ if ($_GET['action'] === 'detailArticle') {
  * 4. Connecter ArticleDAO à la Base de données (connexion à la BD en PHP + la requête SELECT * FROM article)
  *
  */
-

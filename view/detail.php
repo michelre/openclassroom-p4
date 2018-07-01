@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Détail</title>
+    <meta charset="UTF-8">
+    <title>Détail</title>
 </head>
+
 <body>
 
-  <h1><?php echo $article->getTitle(); ?></h1>
+    <h1>
+        <?php echo $note->getTitle(); ?>
+    </h1>
 
-  <div>
-      <?php echo $article->getContent(); ?>
-  </div>
+    <div>
+        <?php echo $note->getContent(); ?>
+    </div>
 
 </body>
+
 </html>
