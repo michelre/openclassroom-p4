@@ -12,10 +12,19 @@ if (!isset($_GET['action']) || $_GET['action'] === 'home') {
 
 if ($_GET['action'] === 'detailNote') {
     $frontendController->detailNote($_GET['noteId']);
-    $frontendController->detailNote($_GET['commentId']);
+   
     return;
 }
 
+if ( $_GET['action'] === 'addComment') {
+    $frontendController->addComment($_POST["title"], $_POST["content"], $_POST["author"], $_GET['noteId']);
+    return;
+}
+
+if ( $_GET['action'] === 'notifyComment') {
+    $frontendController->notifyComment($_GET['is_notified']);
+    return;
+}
 
 /**
  * 1. Bien relire le code du jour

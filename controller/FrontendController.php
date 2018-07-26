@@ -17,18 +17,40 @@ class FrontendController
     public function home()
     {
         $notes = $this->noteDao->findAll();
-          $comments = $this->commentDao->findAll();
+        $notesHeader=$notes;
+          
         require('view/home.php');
     }
 
-    public function detailNote($noteId,$commentId)
+    public function detailNote($noteId)
     {
+         $notesHeader = $this->noteDao->findAll();
         $note = $this->noteDao->findById($noteId);
-         $comment = $this->commentDao->findByNoteld($commentId);
+         $comments = $this->commentDao->findByNoteId($noteId);
        
         
         require('view/detail.php');
     }
+    
+     public function addComment($title,$content,$author,$noteId)
+    {
+        
+        $this->commentDao->create($title,$content,$author,$noteId);
+         header('Location:?action=detailNote&noteId='.$noteId);
+      
+    }
+    
+       public function notifyComment($is_notified)
+    {
+        
+        $this->commentDao->notify($is_notified);
+       header('Location:action=detailNote');
+      
+        
+      
+    }
+    
+   
     
      
 
