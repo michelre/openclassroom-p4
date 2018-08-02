@@ -40,11 +40,11 @@ class FrontendController
       
     }
     
-       public function notifyComment($is_notified)
+       public function notifyComment($commentId,$noteId)
     {
         
-        $this->commentDao->notify($is_notified);
-       header('Location:action=detailNote');
+        $this->commentDao->notify($commentId);
+       header('Location:?action=detailNote&noteId='.$noteId);
       
         
       

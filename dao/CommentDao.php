@@ -60,11 +60,12 @@ $query->execute();
 
     }
     
-      public function notify($is_notified)
+      public function notify($commentId)
     {
-       $query=$this->db->prepare("insert into comment(is_notified)) value(1)");
-           $query->bind_param('commentaire déjà signalé');
-          $query->execute();
+         
+       $query=$this->db->prepare("update comment set is_notified=1 where id=?");
+           $query->bind_param('s',$commentId);
+                     $query->execute();
 
     }
 

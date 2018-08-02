@@ -25,7 +25,13 @@
             <?php foreach($comments as $comment){?>
             <li>
                 <?php echo $comment->getContent();?><br/>
-                <button action="?action=notifyComment" type="button" class="btn btn-danger">Signaler</button>
+                <?php if ($comment->isNotified()){ ?>
+                <span> Déjà signalé </span>
+                <?php } ?>
+                <!-- Condition inverse-->
+                <?php if (!$comment->isNotified()){ ?>
+                <a href="?action=notifyComment&commentId=<?php echo $comment->getId();?>&noteId=<?php echo $note->getId();?>" class="btn btn-danger">Signaler</a>
+                <?php } ?>
 
             </li>
             <?php } ?>
@@ -37,13 +43,7 @@
         <div class="container w-50">
 
 
-
-
             <form action="?action=addComment&noteId=<?php echo $note->getId();?>" method="post">
-
-
-
-
 
                 <div class="form-group">
                     <label for="title">Titre</label>
@@ -70,16 +70,7 @@
         </div>
 
 
-
-
-
-
-
-
     </div>
-
-
-
 
 
 

@@ -1,8 +1,10 @@
 <?php
 
 require_once('controller/FrontendController.php');
+require_once('controller/BackendController.php');
 
 $frontendController = new FrontendController();
+$backendController = new BackendController();
 
 
 if (!isset($_GET['action']) || $_GET['action'] === 'home') {
@@ -22,14 +24,37 @@ if ( $_GET['action'] === 'addComment') {
 }
 
 if ( $_GET['action'] === 'notifyComment') {
-    $frontendController->notifyComment($_GET['is_notified']);
+    $frontendController->notifyComment($_GET['commentId'],$_GET['noteId']);
     return;
 }
 
-/**
- * 1. Bien relire le code du jour
- * 2. Créer la base de données à partir du sujet (anticiper les besoins)
- * 3. Insérer des fausses données dans la BD
- * 4. Connecter ArticleDAO à la Base de données (connexion à la BD en PHP + la requête SELECT * FROM article)
- *
- */
+
+if ($_GET['action'] === 'adminHome') {
+  
+    $backendController->adminHome();
+    return;
+}
+
+if ($_GET['action'] === 'updateNoteDisplay') {
+  
+    $backendController->updateNoteDisplay($_GET["noteId"]);
+    return;
+}
+
+if ($_GET['action'] === 'deleteNote') {
+  
+    $backendController->deleteNote($_GET["noteId"]);
+    return;
+}
+
+if ($_GET['action'] === 'manageCommentsDisplay') {
+  
+    $backendController->manageCommentsDisplay($_GET["noteId"]);
+    return;
+}
+
+if ($_GET['action'] === 'addNoteDisplay') {
+  
+    $backendController->addNoteDisplay();
+    return;
+}
