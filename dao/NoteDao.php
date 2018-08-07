@@ -29,21 +29,31 @@ class NoteDao extends BaseDao
         return new Note($note['id'], $note['title'], $note['content'], $note['date']);
     }
 
-       public function create()
+       public function create($title,$content)
     {
-        //INSERT INTO article....
-
+        $query=$this->db->prepare("insert into notes(title,content,date) values(?,?,NOW()) ");
+        $query->bind_param('ss',$title,$content);
+$query->execute();
+           
+         
     }
 
-    public function update()
+    public function update($title,$content,$noteId)
     {
         //UPDATE article SET ...
+          $query=$this->db->prepare("update notes SET title=?,content=? where id=? ");
+        $query->bind_param('ssi',$title,$content,$noteId);
+$query->execute();
+           
 
     }
 
-    public function delete($articleId)
+    public function delete($noteId)
     {
         //DELETE FROM article WHERE id = articleId
+         $query=$this->db->prepare("delete from notes where id=? ");
+        $query->bind_param('i',$noteId);
+$query->execute();
 
     }
 

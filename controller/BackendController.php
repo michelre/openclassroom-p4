@@ -30,21 +30,26 @@ class BackendController
     
      public function updateNoteDisplay($noteId)
     {       
-         $notesHeader = $this->noteDao->findAll();              
+         $notesHeader = $this->noteDao->findAll();  
+         $note=$this->noteDao->findById($noteId);
                        
          require('view/updateNoteDisplay.php'); 
            
-        } 
+        }
+    
+     
     
      public function deleteNote($noteId)
     {       
-         
-           
+         $this->noteDao->delete($noteId);  
+           header('Location:?action=adminHome');
         } 
     
       public function manageCommentsDisplay($noteId)
     {       
-         $notesHeader = $this->noteDao->findAll();              
+         $notesHeader = $this->noteDao->findAll();
+          $comments=$this->commentDao->findNotifiedComments($noteId);
+          
                        
          require('view/manageCommentsDisplay.php'); 
            
@@ -52,11 +57,28 @@ class BackendController
     
       public function addNoteDisplay()
     {       
-         $notesHeader = $this->noteDao->findAll();              
-                       
+         $notesHeader = $this->noteDao->findAll();  
+         
          require('view/addNoteDisplay.php'); 
            
         } 
+    
+      public function addNote($title,$content)
+    {       
+         $this->noteDao->create($title,$content);  
+             
+        
+          header('Location:?action=adminHome');
+           
+        } 
+    
+      public function updateNote($title,$content,$noteId)
+    {       
+         $this->noteDao->update($title,$content,$noteId);               
+                       
+        header('Location:?action=adminHome');
+           
+        }
     
     
 }

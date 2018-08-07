@@ -41,6 +41,12 @@ if ($_GET['action'] === 'updateNoteDisplay') {
     return;
 }
 
+if ($_GET['action'] === 'updateNote') {
+  
+    $backendController->updateNote($_POST["title"], $_POST["content"],$_GET["noteId"]);
+    return;
+}
+
 if ($_GET['action'] === 'deleteNote') {
   
     $backendController->deleteNote($_GET["noteId"]);
@@ -56,5 +62,11 @@ if ($_GET['action'] === 'manageCommentsDisplay') {
 if ($_GET['action'] === 'addNoteDisplay') {
   
     $backendController->addNoteDisplay();
+    return;
+}
+
+if ($_GET['action'] === 'addNote') {
+  
+    $backendController->addNote($_POST["title"], $_POST["content"]);
     return;
 }

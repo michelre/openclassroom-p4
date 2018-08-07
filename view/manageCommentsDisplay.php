@@ -14,6 +14,21 @@
     <div class="container">
 
         <h1>Gérer les commentaires de l'article</h1>
+        <ul>
+            <?php foreach($comments as $comment){  ?>
+
+            <li>
+                <?php echo $comment->getContent();?>
+                <a href="?action=keepComment&commentId=<?php echo $comment->getId();?>" class="btn btn-primary">Conserver le commentaire</a>
+                <a href="?action=removeComment&commentId=<?php echo $comment->getId();?>" class="btn btn-danger">Supprimer le commentaire</a>
+            </li>
+
+
+
+            <?php  
+}
+            ?>
+        </ul>
     </div>
 
 </body>

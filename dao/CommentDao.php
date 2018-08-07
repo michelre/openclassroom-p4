@@ -34,6 +34,20 @@ class CommentDao extends BaseDao
 
 
     }
+    
+      public function findNotifiedComments($noteId)
+    {
+         
+        $commentsDb=$this->db->query('select * from comment where is_notified=1 and  note_id='.$noteId)->fetch_all(MYSQLI_ASSOC);
+        $comments = array();
+        foreach ($commentsDb as $comment){
+            array_push($comments, new Comment($comment['id'], $comment['title'], $comment['content'], $comment['author'], $comment['date'], $comment['is_notified'], $comment['note_id']));
+
+        }
+
+        return $comments;
+
+    }
 
     public function create($title,$content,$author,$noteId)
     {
@@ -68,6 +82,8 @@ $query->execute();
                      $query->execute();
 
     }
+
+   
 
 
 
