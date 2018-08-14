@@ -38,7 +38,8 @@ class CommentDao extends BaseDao
       public function findNotifiedComments($noteId)
     {
          
-        $commentsDb=$this->db->query('select * from comment where is_notified=1 and  note_id='.$noteId)->fetch_all(MYSQLI_ASSOC);
+        $commentsDb=$this->db->query('select * from comment where is_notified=1 and  note_id='.$noteId)
+            ->fetch_all(MYSQLI_ASSOC);
         $comments = array();
         foreach ($commentsDb as $comment){
             array_push($comments, new Comment($comment['id'], $comment['title'], $comment['content'], $comment['author'], $comment['date'], $comment['is_notified'], $comment['note_id']));
@@ -59,9 +60,11 @@ $query->execute();
     
     
 
-    public function update()
+    public function keep($commentId)
     {
-
+ $query=$this->db->prepare("update comment set is_notified=0 where id=?"); 
+        $query->bind_param('i',$commentId);
+$query->execute();
 
     }
     
@@ -70,7 +73,9 @@ $query->execute();
     
     public function delete($commentId)
     {
-
+$query=$this->db->prepare("delete from comment  where id=?"); 
+        $query->bind_param('i',$commentId);
+$query->execute();
 
     }
     
@@ -78,13 +83,13 @@ $query->execute();
     {
          
        $query=$this->db->prepare("update comment set is_notified=1 where id=?");
-           $query->bind_param('s',$commentId);
+           $query->bind_param('i',$commentId);
                      $query->execute();
 
     }
 
    
-
+/*Créer une méthode 'keep' dans commentDAO qui s'occupe de faire passer le champs is_notified à 0 pour le commentaire. Appeler cette méthode dans le backendController*/
 
 
 

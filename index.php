@@ -54,11 +54,24 @@ if ($_GET['action'] === 'deleteNote') {
 }
 
 if ($_GET['action'] === 'manageCommentsDisplay') {
+    
   
     $backendController->manageCommentsDisplay($_GET["noteId"]);
     return;
+   
 }
 
+if ($_GET['action'] === 'keepComment') {
+  
+    $backendController->keepComment($_GET["commentId"],$_GET['noteId']);
+    return;
+}
+
+if ($_GET['action'] === 'removeComment') {
+  
+    $backendController->removeComment($_GET["commentId"],$_GET['noteId']);
+    return;
+}
 if ($_GET['action'] === 'addNoteDisplay') {
   
     $backendController->addNoteDisplay();

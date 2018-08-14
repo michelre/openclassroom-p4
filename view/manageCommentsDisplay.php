@@ -19,8 +19,8 @@
 
             <li>
                 <?php echo $comment->getContent();?>
-                <a href="?action=keepComment&commentId=<?php echo $comment->getId();?>" class="btn btn-primary">Conserver le commentaire</a>
-                <a href="?action=removeComment&commentId=<?php echo $comment->getId();?>" class="btn btn-danger">Supprimer le commentaire</a>
+                <a href="?action=keepComment&commentId=<?php echo $comment->getId();?>&noteId=<?php echo $comment->getNoteId();?>" class="btn btn-primary">Conserver le commentaire</a>
+                <a href="?action=removeComment&commentId=<?php echo $comment->getId();?>&noteId=<?php echo $comment->getNoteId();?>" class="btn btn-danger">Supprimer le commentaire</a>
             </li>
 
 

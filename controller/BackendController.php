@@ -80,5 +80,22 @@ class BackendController
            
         }
     
+     public function keepComment($commentId,$noteId)
+    {    
+        
+         $this->commentDao->keep($commentId);               
+                       
+        header('Location:?action=manageCommentsDisplay&noteId='.$noteId);
+           
+        }
+    
+     public function removeComment($commentId,$noteId)
+    {       
+         $this->commentDao->delete($commentId);               
+                       
+        header('Location:?action=manageCommentsDisplay&noteId='.$noteId);
+           
+        }
+    
     
 }
